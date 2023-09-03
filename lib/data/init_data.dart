@@ -12,6 +12,6 @@ mixin DataGetter {
 
   static Future<void> init() async {
     await CategoriesListData().initCategoriesList();
-    await ExpensesListData().getExpensesList();
+    await ExpensesListData().getExpensesMap();
   }
 }

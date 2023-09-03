@@ -11,11 +11,11 @@ class ExpensesListView extends StatelessWidget {
     return Consumer<ExpensesList>(builder: (context, value, child) {
       if (value.isLoading) {
         return const Center(child: CircularProgressIndicator());
-      } else if (value.expenses.isNotEmpty) {
+      } else if (value.expensesList.isNotEmpty) {
         return ListView.builder(
-          itemCount: value.expenses.length,
+          itemCount: value.expensesList.length,
           itemBuilder: (context, index) =>
-              ExpenseView(expense: value.expenses[index]),
+              ExpenseView(expense: value.expensesList[index]),
         );
       } else {
         return const Center(child: Text("No Data"));

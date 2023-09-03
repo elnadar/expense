@@ -8,7 +8,8 @@ class ExpensesList extends ChangeNotifier {
   factory ExpensesList() {
     return _instance;
   }
-  List<Expense> expenses = [];
+  Map<dynamic, Expense> expensesMap = {};
+  List<Expense> get expensesList => expensesMap.values.toList();
   bool _isLoading = true;
 
   bool get isLoading => _isLoading;
@@ -22,10 +23,15 @@ class ExpensesList extends ChangeNotifier {
     await ExpensesListData().addExepnes(expense);
   }
 
-  Future<List<Expense>> getExpenses() async {
+  Future<void> deleteExpense(Expense expense) async {
+    await ExpensesListData().deleteExpense(expense);
+    expensesList.remove(expense);
+  }
+
+  Future<Map> getExpenses() async {
     isLoading = true;
-    await ExpensesListData().getExpensesList();
+    await ExpensesListData().getExpensesMap();
     isLoading = false;
-    return expenses;
+    return expensesMap;
   }
 }

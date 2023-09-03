@@ -12,6 +12,19 @@ class ExpensesListData {
     return _instance;
   }
 
+  Future deleteExpense(Expense expense) async {
+    var box = await Hive.openBox<Expense>('Expense');
+    final expenseKey = ExpensesList()
+        .expensesMap
+        .entries
+        .firstWhere((element) => element.value == expense)
+        .key;
+    await box.delete(expenseKey);
+    if (box.isOpen) {
+      await box.close();
+    }
+  }
+
   Future addExepnes(Expense expense) async {
     var box = await Hive.openBox<Expense>('Expense');
     await box.add(expense);
@@ -20,10 +33,10 @@ class ExpensesListData {
     }
   }
 
-  Future<ExpensesList> getExpensesList() async {
+  Future<ExpensesList> getExpensesMap() async {
     var box = await Hive.openBox<Expense>('Expense');
-    final data = box.values.toList();
-    _expenesList.expenses = data;
+
+    _expenesList.expensesMap = box.toMap();
     if (box.isOpen) {
       await box.close();
     }
