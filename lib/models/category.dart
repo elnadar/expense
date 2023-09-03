@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:expense/utils/icons.dart';
 import 'package:flutter/material.dart';
 
 import 'package:expense/utils/theme.dart';
@@ -19,7 +20,7 @@ class Category {
     return <String, dynamic>{
       'name': name,
       'color': _color.value,
-      'icons': icon?.codePoint,
+      'icons': icon.toString(),
     };
   }
 
@@ -27,9 +28,7 @@ class Category {
     return Category(
       name: map['name'] as String,
       color: Color(map['color'] as int),
-      icon: map['icons'] != null
-          ? IconData(map['icons'] as int, fontFamily: 'MaterialIcons')
-          : null,
+      icon: map['icons'] != null ? IconsMap.icons[map['icons']] : null,
     );
   }
 

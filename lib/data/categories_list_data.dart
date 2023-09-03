@@ -1,5 +1,6 @@
 import 'package:expense/models/categories_list.dart';
 import 'package:expense/models/category.dart';
+import 'package:expense/utils/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -40,25 +41,15 @@ class CategoriesListData {
 
 class CategoryAdapter extends TypeAdapter<Category> {
   @override
-  final int typeId = 0; // Use a unique ID for your Category class
+  final int typeId = 0; // A unique identifier for this adapter
 
   @override
   Category read(BinaryReader reader) {
-    final name = reader.read() as String;
-    final colorValue = reader.read() as int;
-    final iconCodePoint = reader.read() as int?;
-    final color = Color(colorValue);
-    final icon = iconCodePoint != null
-        ? IconData(iconCodePoint, fontFamily: 'MaterialIcons')
-        : null;
-
-    return Category(name: name, color: color, icon: icon);
+    return Category.fromMap(Map<String, dynamic>.from(reader.readMap()));
   }
 
   @override
   void write(BinaryWriter writer, Category obj) {
-    writer.write(obj.name);
-    writer.write(obj.color.value);
-    writer.write(obj.icon?.codePoint);
+    writer.writeMap(obj.toMap());
   }
 }

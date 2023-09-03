@@ -4,8 +4,8 @@ import 'package:expense/utils/theme.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
-  await Initializer.init();
   WidgetsFlutterBinding.ensureInitialized();
+  await Initializer.init();
   runApp(const MainApp());
 }
 
