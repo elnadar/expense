@@ -1,3 +1,4 @@
+import 'package:expense/shared/move_content_for_keyboard.dart';
 import 'package:expense/views/expenses/new_expense_form_view.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,8 @@ class _AddExpenseViewState extends State<AddExpenseView> {
       ? showModalBottomSheet(
           isScrollControlled: true,
           context: context,
-          builder: (context) => const NewExpenseForm(),
+          builder: (context) =>
+              const MoveContentForKeyboard(child: NewExpenseForm()),
         )
       : showDialog(
           context: context,
