@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 abstract final class IconsMap {
-  static const Map<String, IconData> icons = {
-    "food_bank": Icons.food_bank,
-    "coffee": Icons.coffee,
-    "games": Icons.games,
+  static getIconFromString(String iconName) => _iconsMapStringToIcon[iconName];
+  static final Map<String, IconData> _iconsMapStringToIcon = {
+    Icons.food_bank.toString(): Icons.food_bank,
+    Icons.coffee.toString(): Icons.coffee,
+    Icons.games.toString(): Icons.games,
   };
 }

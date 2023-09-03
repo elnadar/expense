@@ -28,7 +28,9 @@ class Category {
     return Category(
       name: map['name'] as String,
       color: Color(map['color'] as int),
-      icon: map['icons'] != null ? IconsMap.icons[map['icons']] : null,
+      icon: map['icons'] != null
+          ? IconsMap.getIconFromString(map['icons'])
+          : null,
     );
   }
 
