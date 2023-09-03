@@ -24,8 +24,9 @@ class ExpensesList extends ChangeNotifier {
   }
 
   Future<void> deleteExpense(Expense expense) async {
-    await ExpensesListData().deleteExpense(expense);
-    expensesList.remove(expense);
+    final key = await ExpensesListData().deleteExpense(expense);
+    expensesMap.remove(key);
+    notifyListeners();
   }
 
   Future<Map> getExpenses() async {

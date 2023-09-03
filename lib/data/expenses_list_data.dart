@@ -12,7 +12,7 @@ class ExpensesListData {
     return _instance;
   }
 
-  Future deleteExpense(Expense expense) async {
+  Future<dynamic> deleteExpense(Expense expense) async {
     var box = await Hive.openBox<Expense>('Expense');
     final expenseKey = ExpensesList()
         .expensesMap
@@ -23,6 +23,7 @@ class ExpensesListData {
     if (box.isOpen) {
       await box.close();
     }
+    return expenseKey;
   }
 
   Future addExepnes(Expense expense) async {
