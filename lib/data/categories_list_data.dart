@@ -1,6 +1,5 @@
 import 'package:expense/models/categories_list.dart';
 import 'package:expense/models/category.dart';
-import 'package:expense/utils/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
