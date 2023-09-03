@@ -19,6 +19,7 @@ class _ExpenseViewState extends State<ExpenseView> {
     // You can show a confirmation dialog or implement custom logic here.
     // Return true to confirm the dismissal, or false to reject it.
     bool shouldDismiss = await showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) {
         return AlertDialog(
