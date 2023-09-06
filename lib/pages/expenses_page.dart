@@ -1,4 +1,6 @@
+import 'package:expense/models/expenses_bucket.dart';
 import 'package:expense/models/expenses_list.dart';
+import 'package:expense/views/chart/bar_chart.dart';
 import 'package:expense/views/expenses/add_expense_view.dart';
 import 'package:expense/views/expenses/expenses_list_view.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,10 @@ class _ExpensesPageState extends State<ExpensesPage> {
       floatingActionButton: const AddExpenseView(),
       body: Column(
         children: [
-          const Text("The chart"),
+          ChangeNotifierProvider(
+            create: (context) => ExpensesBucket()..getData(),
+            child: const BarChart(height: 250),
+          ),
           Expanded(
               child: ChangeNotifierProvider(
                   create: (context) => ExpensesList()..getExpenses(),
