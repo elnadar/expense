@@ -12,7 +12,7 @@ class Category {
   final IconData? icon;
 
   Category({required this.name, Color? color, required this.icon})
-      : _color = color ?? mainScheme.primary;
+      : _color = color ?? kColorScheme.primary;
 
   Color get color => _color;
 

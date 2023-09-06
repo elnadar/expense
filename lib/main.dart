@@ -17,9 +17,11 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: mainScheme,
-        useMaterial3: true,
-      ),
+          colorScheme: kColorScheme,
+          useMaterial3: true,
+          cardTheme: CardTheme(
+              color: kColorScheme.tertiaryContainer,
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6))),
       onGenerateRoute: onGenerateRoute,
     );
   }

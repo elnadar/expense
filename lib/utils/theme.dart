@@ -1,3 +1,3 @@
 import 'package:flutter/material.dart';
 
-const mainScheme = ColorScheme.light();
+final kColorScheme = ColorScheme.fromSeed(seedColor: Colors.indigo);
