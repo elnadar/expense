@@ -22,6 +22,12 @@ class MainApp extends StatelessWidget {
           cardTheme: CardTheme(
               color: kColorScheme.tertiaryContainer,
               margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6))),
+      darkTheme: ThemeData(
+          colorScheme: kDarkColorScheme,
+          useMaterial3: true,
+          cardTheme: CardTheme(
+              color: kDarkColorScheme.tertiaryContainer,
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 6))),
       onGenerateRoute: onGenerateRoute,
     );
   }
