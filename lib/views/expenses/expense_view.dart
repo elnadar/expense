@@ -47,10 +47,25 @@ class _ExpenseViewState extends State<ExpenseView> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Dismissible(
       direction: DismissDirection.endToStart,
       onDismissed: _onDismess,
       confirmDismiss: _confiemDismiss,
+      background: ColoredBox(
+        color: theme.colorScheme.error,
+        child: Align(
+          alignment: AlignmentDirectional.centerEnd,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Icon(
+              Icons.delete,
+              color: theme.colorScheme.onError,
+            ),
+          ),
+        ),
+      ),
       key: ValueKey(widget.expense),
       child: ExpenesTile(expense: widget.expense),
     );
@@ -67,6 +82,42 @@ class ExpenesTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return DecoratedBox(
+      decoration: const BoxDecoration(),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 16,
+          horizontal: 20,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              expense.title,
+              style: theme.textTheme.titleMedium,
+            ),
+            const SizedBox(height: 4),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("\$${expense.amount.toStringAsFixed(2)}"),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (expense.category.icon != null)
+                      Icon(expense.category.icon),
+                    if (expense.category.icon == null) const Icon(Icons.alarm),
+                    const SizedBox(width: 6),
+                    Text(expense.formatedDate)
+                  ],
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
     return Card(
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -74,8 +125,12 @@ class ExpenesTile extends StatelessWidget {
           horizontal: 20,
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(expense.title),
+            Text(
+              expense.title,
+              style: theme.textTheme.titleMedium,
+            ),
             const SizedBox(height: 4),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
