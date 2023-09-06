@@ -118,39 +118,5 @@ class ExpenesTile extends StatelessWidget {
         ),
       ),
     );
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 16,
-          horizontal: 20,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              expense.title,
-              style: theme.textTheme.titleMedium,
-            ),
-            const SizedBox(height: 4),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("\$${expense.amount.toStringAsFixed(2)}"),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if (expense.category.icon != null)
-                      Icon(expense.category.icon),
-                    if (expense.category.icon == null) const Icon(Icons.alarm),
-                    const SizedBox(width: 6),
-                    Text(expense.formatedDate)
-                  ],
-                )
-              ],
-            )
-          ],
-        ),
-      ),
-    );
   }
 }
